@@ -1,0 +1,139 @@
+{
+	"info": {
+		"_postman_id": "996113f1-6bcb-4a24-be9d-4be19f340f37",
+		"name": "ExamenQA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Request_oficinas_xml",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body contains valid XML string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(`<?xml version=\"1.0\" encoding=\"UTF-8\" ?>`);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{PROTOCOL}}://{{URL}}/catalogo/212841-0-oficinas-correos.xml",
+					"protocol": "{{PROTOCOL}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"catalogo",
+						"212841-0-oficinas-correos.xml"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request_oficinas_json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Id is correct\", function () {\r",
+							"    let id = pm.collectionVariables.get(\"id\");\r",
+							"\r",
+							"    let jsonData = pm.response.json();\r",
+							"    let response = jsonData['@graph'].find(x => x.id == id);\r",
+							"\r",
+							"    pm.expect(response.id).to.eql(id);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Title is correct\", function () {\r",
+							"    let id = pm.collectionVariables.get(\"id\");\r",
+							"    let title = pm.collectionVariables.get(\"title\");\r",
+							"\r",
+							"    let jsonData = pm.response.json();\r",
+							"    let response = jsonData['@graph'].find(x => x.id == id);\r",
+							"\r",
+							"    pm.expect(response.title).to.eql(title);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Postal-code is correct\", function () {\r",
+							"    let id = pm.collectionVariables.get(\"id\");   \r",
+							"    let postalCode = pm.collectionVariables.get(\"postalCode\");          \r",
+							"\r",
+							"    var jsonData = pm.response.json();\r",
+							"    let response = jsonData['@graph'].find(x => x.id == id);\r",
+							"    pm.expect(response.address['postal-code']).to.eql(postalCode);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{PROTOCOL}}://{{URL}}/catalogo/212841-0-oficinas-correos.json",
+					"protocol": "{{PROTOCOL}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"catalogo",
+						"212841-0-oficinas-correos.json"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "13802"
+		},
+		{
+			"key": "title",
+			"value": "Oficina de Correos. Sucursal 34. Calle San Magín"
+		},
+		{
+			"key": "postalCode",
+			"value": "28026"
+		}
+	]
+}
