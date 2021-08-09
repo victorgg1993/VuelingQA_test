@@ -1,0 +1,11 @@
+{
+  "name": "newman-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "newman": "newman run  ExamenQA.postman_collection.json -e Env_examenQA.postman_environment.json --insecure"
+  },
+  "author": "",
+  "license": "ISC"
+}
