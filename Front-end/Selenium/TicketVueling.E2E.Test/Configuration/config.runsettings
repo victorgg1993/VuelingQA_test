@@ -1,0 +1,6 @@
+﻿<TestRunParameters>
+	<Parameter name="targetURL" value="https://m.vueling.com/"/>
+	<Parameter name="browser" value="ChromeLocal"/>
+	<Parameter name="originPlace" value="Barcelona"/>
+	<Parameter name="destinyPlace" value="Madrid"/>
+</TestRunParameters>
